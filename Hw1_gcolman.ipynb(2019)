@@ -1,0 +1,844 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.6.3"
+    },
+    "toc": {
+      "base_numbering": 1,
+      "nav_menu": {
+        "height": "173px",
+        "width": "252px"
+      },
+      "number_sections": true,
+      "sideBar": true,
+      "skip_h1_title": false,
+      "title_cell": "Table of Contents",
+      "title_sidebar": "Contents",
+      "toc_cell": false,
+      "toc_position": {},
+      "toc_section_display": "block",
+      "toc_window_display": false
+    },
+    "colab": {
+      "name": "Hw1_gcolman.ipynb",
+      "version": "0.3.2",
+      "provenance": [],
+      "collapsed_sections": [],
+      "include_colab_link": true
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/gccolman/f18-06625/blob/master/Hw1_gcolman.ipynb(2019)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "FJ_J0f-jAxMF",
+        "colab_type": "text"
+      },
+      "source": [
+        "$$\\require{mhchem}$$"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "SNnS92MhMkpv",
+        "colab_type": "text"
+      },
+      "source": [
+        "List the person's name(s) if you worked with someone else on this HW. "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "kqs8MIVbAxMH",
+        "colab_type": "text"
+      },
+      "source": [
+        "# Question 1 Python/latex practice (5 pts)\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "u1KBaY6xAxMJ",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q1.1\n",
+        "Review the materials we discussed in class on Tuesday.  Look over scipy.optimize,  scipy.minimize, and np.array modules.  Post at least one question on piazza about the concepts/examples/tutorials that you find confusing.\n",
+        "\n",
+        "__Copy paste your piazza post link here so we can give you credit__"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "EnsTOx2_rX3r",
+        "colab_type": "text"
+      },
+      "source": [
+        "https://piazza.com/class/jzipnz3n4pj2rd?cid=21"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ThtfhyCtAxMK",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q1.2\n",
+        "\n",
+        "The Fibonacci sequence is defined such that each number is the sum of the two previous numbers in the sequence, starting with [1, 1, 2, 3, 5...]. Generate the first 15 elements in the sequence in Python, with the final result as a [list](https://www.tutorialspoint.com/python/python_lists.htm)."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "DDuY_uRrTGc4",
+        "colab_type": "code",
+        "outputId": "24aecb14-edf9-403e-a05f-ae01ca2e8824",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "fib = [1, 1]\n",
+        "for i in range(13):\n",
+        "    fib += [sum(fib[-2:])]\n",
+        "    \n",
+        "print(fib)"
+      ],
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "mhFJxZS8AxMR",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q1.3 \n",
+        "Bonus (1pt) write a fibonacci generator as a recursive function"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "oBdo1thdrr35",
+        "colab_type": "code",
+        "outputId": "4a80ac04-d575-40ac-e723-ecee4393ecd9",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 225
+        }
+      },
+      "source": [
+        "def rec_fib(n):  \n",
+        "   if n <= 1:  \n",
+        "       return n  \n",
+        "   else:  \n",
+        "       return(rec_fib(n-1) + rec_fib(n-2))  \n",
+        "    \n",
+        "#how many terms to evaluate? - take input\n",
+        "nterms = int(input(\"How many terms?\"))  \n",
+        "\n",
+        "#check if number of terms is valid  \n",
+        "if nterms <= 0:  \n",
+        "   print(\"Plese enter a positive integer\")  \n",
+        "else:  \n",
+        "   print(\"Fibonacci sequence:\")  \n",
+        "   for i in range(nterms):  \n",
+        "       print(rec_fib(i))  "
+      ],
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "How many terms?10\n",
+            "Fibonacci sequence:\n",
+            "0\n",
+            "1\n",
+            "1\n",
+            "2\n",
+            "3\n",
+            "5\n",
+            "8\n",
+            "13\n",
+            "21\n",
+            "34\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "zskxte2cAxMS",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q1.4\n",
+        "Type-set 5 latex equations.  Choose the 5 most complicated equations you have seen so far in your other classes (or from your undergrad courses) and typeset them here."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "u39h9aUu2hSy",
+        "colab_type": "text"
+      },
+      "source": [
+        "$$\\require{mhchem}$$\n",
+        "\n",
+        "\\begin{equation}\n",
+        "\\ce{$Fe^{2+}$ + 2 $OH^−$ → Fe(OH)2}\n",
+        "\\end{equation}\n",
+        "\n",
+        "\\begin{equation}\n",
+        "\\ce{2 $S_2O_3^{2-}$ + I_2→ $S_4O_6^{2−}$ + 2 $I^−$}\n",
+        "\\end{equation}\n",
+        "\n",
+        "\n",
+        "\\begin{equation}\n",
+        "\\ce{$CH_3COO^−$ + H2O → CH3COOH + $OH^−$}\n",
+        "\\end{equation}\n",
+        "\n",
+        "\\begin{equation}\n",
+        "\\ce{C4H6O6 + NaHCO3 → NaC4H5O6 + H2O + CO2}\n",
+        "\\end{equation}\n",
+        "\n",
+        "\\begin{equation}\n",
+        "\\ce{$Al^{3+}$ + $PO_4^{3−}$ → AlPO4}\n",
+        "\\end{equation}\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "eqUw_3v2AxMT",
+        "colab_type": "text"
+      },
+      "source": [
+        "# Question 2:  Reaction extent (completeness) (5pts)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4id6Hut4AxMV",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q2.1\n",
+        "Ammonia has been proposed as a chemical to store hydrogen for a hydrogen fuel cell due its favorable volumetric hydrogen density. Write down the stoichiometric vector for the thermal decomposition of ammonia to nitrogen and hydrogen."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "hv9FgWxUAxMW",
+        "colab_type": "text"
+      },
+      "source": [
+        "$\\ce{2NH3 -> N2 + 3H2}$"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "XVsiSIe7TLtQ",
+        "colab_type": "code",
+        "outputId": "40952bdc-8a3a-4919-c63f-9aeda1786387",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "# A=[NH3, N2, H2]\n",
+        "\n",
+        "v=[-2, 1, 3]\n",
+        "\n",
+        "print(v)"
+      ],
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "[-2, 1, 3]\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "frW6Cp_qAxMZ",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q2.2\n",
+        "Suppose that we know the initial gas concentration of ammonia in a tank is 100 mol/L, and the fractional reaction extent proceeds as $\\Xi=(1-e^{-3t^2})$ where $t$ is the time in seconds.  Plot the concentration of ammonia, nitrogen, and hydrogen as a function of time over the first 2 seconds.  Label the plot with a legend to indicate the species.  "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "QgbkPBs1AxMa",
+        "colab_type": "text"
+      },
+      "source": [
+        "From class, we know that\n",
+        "\\begin{equation}\n",
+        "C_J = C_{J,0} + \\alpha_J \\xi\n",
+        "\\end{equation}\n",
+        "So how do we find $\\xi$? We use the other equation:\n",
+        "\\begin{equation}\n",
+        "\\Xi = \\xi / \\xi_{max}\n",
+        "\\end{equation}\n",
+        "and rearrange it to:\n",
+        "\\begin{equation}\n",
+        "\\xi = \\Xi \\cdot\\xi_{max}\n",
+        "\\end{equation}\n",
+        "So how do we find $\\xi_{max}$? Use:\n",
+        "\\begin{equation}\n",
+        "\\xi_{max} = -\\frac{C_{J,0}}{\\alpha_J}\n",
+        "\\end{equation}\n",
+        "Let's put it all together:\n",
+        "\\begin{equation}\n",
+        "C_J = C_{J,0} + \\alpha_J \\Xi \\biggl(-\\frac{C_{J,0}}{\\alpha_J}\\biggr)\n",
+        "\\end{equation}\n",
+        "We can generalize this to:\n",
+        "\\begin{equation}\n",
+        "C_i = C_{i,0} + \\alpha_i \\Xi \\biggl(-\\frac{C_{J,0}}{\\alpha_J}\\biggr)\n",
+        "\\end{equation}\n",
+        "where i is any species and J is the limiting reactant"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "wrxuYPztHZxb",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 283
+        },
+        "outputId": "33ad66b7-efd3-4757-913c-41ff4f7f0713"
+      },
+      "source": [
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "#A=[NH3, N2, H2]\n",
+        "\n",
+        "#v=[-2, 1, 3]\n",
+        "\n",
+        "alpha = np.array([-2, 1, 3])\n",
+        "\n",
+        "#initial concentrations (mol/L)\n",
+        "C0 = [100, 0, 0]\n",
+        "\n",
+        "def extent(t):\n",
+        "  return (1-np.exp(-3*t**2))\n",
+        "\n",
+        "def C(t):\n",
+        "  return C0 + extent(t)*alpha*(C0[0]/-alpha[0])\n",
+        "\n",
+        "Csave = []\n",
+        "Xsave = []\n",
+        "tspan = np.arange(0, 2, 0.1)\n",
+        "for t in tspan:\n",
+        "    Xsave.append(extent(t))\n",
+        "    Csave.append(C(t))\n",
+        "\n",
+        "plt.plot(tspan, Csave)\n",
+        "plt.xlabel('Time [s]')\n",
+        "plt.ylabel('Concentration [mol/L]')\n",
+        "plt.legend(['$NH_3$', '$N_2$', '$H_2$'])\n",
+        "plt.show()"
+      ],
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "image/png": "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\nJLX6AhI8Opz/gqmCAAAAAElFTkSuQmCC\n",
+            "text/plain": [
+              "<Figure size 432x288 with 1 Axes>"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          }
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "p2wZld7YAxMg",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q2.3\n",
+        "The operator is worried that if the reaction continues to full extent the increase in the number of moles will drive the pressure too high.  Calculate the time it will take to achieve a 50% higher pressure in the reactor (assuming ideal gas) due to the increase in the number of moles, using fsolve."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "blmjJPKDHd2M",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "62478532-01cd-48ec-81ec-595ef0bf55b8"
+      },
+      "source": [
+        "from scipy.optimize import fsolve\n",
+        "\n",
+        "# find total number of moles in system\n",
+        "\n",
+        "def nmol(t):\n",
+        "  return np.sum(C(t))\n",
+        "\n",
+        "#when does number of moles increase by 50% (reaches 150)?\n",
+        "\n",
+        "def objective(t):\n",
+        "  return nmol(t) - 150\n",
+        "\n",
+        "t50, = fsolve(objective, 0.5)\n",
+        "print('The pressure increases by 50% at {0:.2f}s'.format(t50))"
+      ],
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "The pressure increases by 50% at 0.48s\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "0bQ4_WiRRkc6",
+        "colab_type": "text"
+      },
+      "source": [
+        "# Question 3 (10 pts)\n",
+        "\n",
+        "Consider the following set of chemical reactions:\n",
+        "\\begin{equation*}\n",
+        "\\ce{2N2O5 <=> 2N2O4 + O2} (1)\\\\\n",
+        "\\ce{N2O5 <=> NO2 + NO3} (2)\\\\\n",
+        "\\ce{NO2 + NO3 <=> N2O5} (3) \\\\\n",
+        "\\ce{NO2 + NO3 <=> NO2 + O2 + NO} (4)\\\\\n",
+        "\\ce{NO + N2O5 <=> 3NO2} (5)\\\\\n",
+        "\\ce{NO2 + NO2 <=> N2O4} (6)\n",
+        "\\end{equation*}\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "yAzE270fRqFT",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q3.1\n",
+        "Determine the stoichiometric matrix **$v$** and the species list **$A$** for this reaction system so the reaction network is summarized as **$\\nu A=0$**"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "v2AxcyEtTPcg",
+        "colab_type": "code",
+        "outputId": "675e7a7f-b7d8-4377-960d-340d061464c2",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 121
+        }
+      },
+      "source": [
+        "# A=[O2, NO, NO2, NO3, N2O4, N2O5]\n",
+        "\n",
+        "v =np.array([[1, 0, 0, 0, 2, -2],\n",
+        "    [0, 0, 1, 1, 0, -1],\n",
+        "    [0, 0, -1, -1, 0, 1],\n",
+        "    [1, 1, 0, -1, 0, 0],\n",
+        "    [0, -1, 3, 0, 0, -1],\n",
+        "    [0, 0, -2, 0, 1, 0]])\n",
+        "\n",
+        "print(v)"
+      ],
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "[[ 1  0  0  0  2 -2]\n",
+            " [ 0  0  1  1  0 -1]\n",
+            " [ 0  0 -1 -1  0  1]\n",
+            " [ 1  1  0 -1  0  0]\n",
+            " [ 0 -1  3  0  0 -1]\n",
+            " [ 0  0 -2  0  1  0]]\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CpqOgi7HSMoc",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q3.2\n",
+        "Determine the rank of the stoichiometric matrix. How many of the reactions are linearly independent?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Sls2YgvlTQJO",
+        "colab_type": "code",
+        "outputId": "fb14b6c2-50da-483e-9e08-9f8b710309c5",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "from numpy.linalg import matrix_rank\n",
+        "\n",
+        "np.linalg.matrix_rank(v)\n",
+        "\n",
+        "print('There are %d linearly independent reactions'%(matrix_rank(v)))"
+      ],
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "There are 4 linearly independent reactions\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "VPqU-y_OSVCn",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q3.3\n",
+        "Now that you have found the number of independent reactions $n_i$, which $n_i$ of the original set of 6 reactions can be chosen as an independent set? Try guessing some set of $n_i$ reactions and determine the rank of the new stoichiometric matrix. Stop when you have determined successfully one or more sets of $n_i$ reactions. *Make sure to show your work* "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "M5Q9wMgZM0Mo",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "b9949d7c-309b-44e1-c619-12cbd3cb8853"
+      },
+      "source": [
+        "#reactions 1-4\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[0,1,2,3],:])"
+      ],
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "3"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "EESY4wgWNpn3",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "5c0e6094-884e-4090-8afb-5f5894ae9b55"
+      },
+      "source": [
+        "#reactions 2-5\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[1,2,3,4],:])"
+      ],
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "3"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "rUUl2tuiNqDn",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "afcab5b9-0e90-4a51-cc90-9ff6e8d50c24"
+      },
+      "source": [
+        "#reactions 3-6\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[2,3,4,5],:])"
+      ],
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "4"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 10
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "tVVP0qziSrvn",
+        "colab_type": "text"
+      },
+      "source": [
+        "## Q3.4\n",
+        "What do you think of a colleague's answer that contains Reactions 2 and 3 in the final set? Can this be correct? Why or why not?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ag6zJV69zTBI",
+        "colab_type": "code",
+        "outputId": "adfe8f01-ad94-4f03-c0b5-0612bfe3f712",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "#check each combination that has equations 2 and 3 in the final set of 4 reactions\n",
+        "\n",
+        "#already know that 1-4 and 2-5 don't work (from above) so trying 1-3 and 5\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[0,1,2,4],:])"
+      ],
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "3"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 11
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "AKcB2BzTTS34",
+        "colab_type": "code",
+        "outputId": "87938d1c-7dc4-4967-a439-29ed2a9db2e0",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "#reactions 1-3 and 6\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[0,1,2,5],:])"
+      ],
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "3"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 12
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "rsk-fV5b0Ih1",
+        "colab_type": "code",
+        "outputId": "086f5810-0a3f-45dc-8287-211f19c0d42d",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "#reactions 2-4 and 6\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[1,2,3,5],:])"
+      ],
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "3"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "JS1zjaonzyxJ",
+        "colab_type": "code",
+        "outputId": "81369784-342a-4e39-e24a-93d96f1c3b4a",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "#reactions 2, 3, 5, and 6\n",
+        "\n",
+        "np.linalg.matrix_rank(v[[1,2,4,5],:])"
+      ],
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "3"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 14
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "OzbbetTF1jeL",
+        "colab_type": "text"
+      },
+      "source": [
+        "No, reactions 2 and 3 cannot be in the final set because there is no combination of four reactions that include reactions 2 and 3 that are all linearly independent."
+      ]
+    }
+  ]
+}
